@@ -1,11 +1,5 @@
-from utils import parse_raw_data
 
 __author__ = 'Sherlock'
-import json
-
-
-def matrix_multiply(raw_data):
-    return multiply(*parse_raw_data(raw_data))
 
 
 def multiply(matrix1, matrix2):

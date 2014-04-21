@@ -1,3 +1,4 @@
+
 __author__ = 'Sherlock'
 
 from unittest import *
@@ -5,15 +6,6 @@ from matrix_multiplication import *
 
 
 class MatrixMultiplicationTest(TestCase):
-    def test_get_matrix_from_json(self):
-        json_string = '[1,2,3]'
-        self.assertEqual([[1, 2, 3]], get_matrix_from_json(json_string))
-
-        json_string = '1'
-        self.assertEqual([[1]], get_matrix_from_json(json_string))
-
-        json_string = '[[1,1,1],[2,2,2],[3,3,3]]'
-        self.assertEqual([[1, 1, 1], [2, 2, 2], [3, 3, 3]], get_matrix_from_json(json_string))
 
     def test_get_column_length_of(self):
         matrix = [[1]]
@@ -44,8 +36,3 @@ class MatrixMultiplicationTest(TestCase):
         self.assertEqual([[90, 96, 102], [216, 231, 246], [342, 366, 390]],
                          multiply(matrix1, matrix2))
 
-    def test_parse_raw_data(self):
-        self.assertEqual(([[1]], [[1]]), parse_raw_data('1<|>1'))
-
-        self.assertEqual(([[1, 2, 3]], [[4, 5, 6], [7, 8, 9]]),
-                         parse_raw_data('[1,2,3]<|>[[4,5,6],[7,8,9]]'))

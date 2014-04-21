@@ -1,13 +1,19 @@
+from utils import HOST, PORT, BUFFER, parse_raw_data
+
 __author__ = 'Sherlock'
 
 import socket
-from matrix_multiplication import matrix_multiply
+from matrix_multiplication import multiply
+import json
 
-HOST = ''
-PORT = 50000
-BUFFER = 4096
 
-if __name__ == 'main':
+def matrix_multiply(raw_data):
+    result_string = json.dumps(multiply(*parse_raw_data(raw_data)))
+    if len(result_string) % BUFFER == 0:
+        result_string += ' '
+    return result_string
+
+if __name__ == '__main__':
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.bind((HOST, PORT))
     sock.listen(0)
@@ -16,11 +22,12 @@ if __name__ == 'main':
     client_sock, client_addr = sock.accept()
     print "{0}:{1} connect".format(*client_addr)
     while True:
-        recv = client_sock.recv(BUFFER)
-        if not recv:
-            client_sock.close()
-            break
-        matrix_multiply(recv)
-        print "[Client {0}:{1} said]: {2}".format(client_addr[0], client_addr[1], recv)
-        client_sock.send('TCP server has received your message')
+        msg_received = ''
+        while True:
+            recv = client_sock.recv(BUFFER)
+            msg_received += recv
+            if len(recv) < BUFFER:
+                break
+        result = matrix_multiply(msg_received)
+        client_sock.send(result)
     sock.close()
