@@ -1,6 +1,5 @@
 __author__ = 'Sherlock'
 import json
-import time
 
 
 def matrix_multiply(raw_data):
@@ -8,7 +7,6 @@ def matrix_multiply(raw_data):
 
 
 def multiply(matrix1, matrix2):
-    start_time = time.time()
 
     row_num = get_row_length_of(matrix1)
     col_num = get_column_length_of(matrix2)
@@ -20,9 +18,6 @@ def multiply(matrix1, matrix2):
                 sum([matrix1[row][i]*matrix2[i][col]
                      for i in range(get_row_length_of(matrix2))])
 
-    end_time = time.time()
-    print 'Matrices multiplication costs {0} seconds'\
-        .format(start_time-end_time)
     return result
 
 
