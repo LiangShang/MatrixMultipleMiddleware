@@ -39,12 +39,13 @@ class MatrixMultiplicationTest(TestCase):
         self.assertEqual(3, get_row_length_of(matrix))
 
     def test_multiply(self):
-        matrix1 = [[1,2,3],[4,5,6],[7,8,9]]
-        matrix2 = [[11,12,13],[14,15,16],[17,18,19]]
-        self.assertEqual([[90,96,102],[216,231,246],[342,366,390]], multiply(matrix1, matrix2))
+        matrix1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        matrix2 = [[11, 12, 13], [14, 15, 16], [17, 18, 19]]
+        self.assertEqual([[90, 96, 102], [216, 231, 246], [342, 366, 390]],
+                         multiply(matrix1, matrix2))
 
     def test_parse_raw_data(self):
-        self.assertEqual(([[1]],[[1]]), parse_raw_data('1<|>1'))
+        self.assertEqual(([[1]], [[1]]), parse_raw_data('1<|>1'))
 
-        self.assertEqual(([[1,2,3]],[[4,5,6],[7,8,9]]),
+        self.assertEqual(([[1, 2, 3]], [[4, 5, 6], [7, 8, 9]]),
                          parse_raw_data('[1,2,3]<|>[[4,5,6],[7,8,9]]'))
