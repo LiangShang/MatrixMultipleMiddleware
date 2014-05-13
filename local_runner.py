@@ -1,6 +1,6 @@
 
 import time
-from server import matrix_multiply
+from socket_server import matrix_multiply
 
 from utils import generate_matrix_string, MATRIX_DEFAULT_SIZE
 

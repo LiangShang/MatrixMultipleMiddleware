@@ -18,8 +18,8 @@ def generate_matrix_string(row, common, column):
     matrix2 = [[random.randint(0, 101) for c in range(column)]
                for r in range(common)]
     result_string = json.dumps(matrix1)+SPLITTER+json.dumps(matrix2)
-    if len(result_string)% BUFFER == 0:
-        result_string += ' '
+    if len(result_string) % BUFFER == 0:
+        result_string.append(' ')
     return result_string
 
 
